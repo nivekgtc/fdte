@@ -1,4 +1,4 @@
 import { LoadFunction } from '~/domain/common/types'
-import { UserModel } from '~/domain/models'
+import { PokemonAbilityModel } from '~/domain/models'
 
-export interface LoadUserList extends LoadFunction<UserModel[]> {}
+export interface LoadPokemonAbilityList extends LoadFunction<PokemonAbilityModel[], string> {}
