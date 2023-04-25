@@ -1,1 +1,1 @@
-export * from './load-user-list/remote-load-user-list'
+export * from './load-pokemon-ability-list/remote-load-pokemon-ability-list'
