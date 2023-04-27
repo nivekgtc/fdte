@@ -3,7 +3,7 @@ import { makeApiUrl } from '~/ioc/helpers'
 import { ApiTypes } from '~/ioc/types'
 
 export const PokemonApiModule = new ContainerModule((bind) => {
-  bind<string>(ApiTypes.POKEMON.LOAD_POKEMON_ABILITY_LIST).toDynamicValue(() =>
+  bind(ApiTypes.POKEMON.LOAD_POKEMON_ABILITY_LIST).toDynamicValue(() =>
     makeApiUrl('ability')
   )
 })

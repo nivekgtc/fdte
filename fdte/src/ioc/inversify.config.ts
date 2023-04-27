@@ -1,19 +1,20 @@
 import 'reflect-metadata'
+
 import { Container } from 'inversify'
 import {
   InfraModule,
   ApplicationModule,
   ApiModule,
-  ValidationModule
+  ValidationModule,
+  ConstantsModule
 } from './modules'
 
 const container = new Container()
 
-container.load(
-  ...ApiModule,
-  ...InfraModule,
-  ...ApplicationModule,
-  ...ValidationModule
-)
+try {
+  container.load(...InfraModule, ...ApplicationModule, ...ApiModule, ...ValidationModule, ...ConstantsModule)
+} catch (error) {
+  console.error(error)
+}
 
 export { container }
