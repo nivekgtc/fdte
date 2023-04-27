@@ -2,8 +2,8 @@ import { inject, injectable } from 'inversify'
 import { Response } from '~/domain/common/types'
 import { error, success } from '~/domain/common/utils'
 import { ApiTypes, InfraTypes } from '~/ioc/types'
-import { RequestResponse } from '~/../fdte/src/application/common/helpers'
-import type { HttpClient } from '~/../fdte/src/application/protocols/http'
+import { RequestResponse } from '~/application/common/helpers'
+import type { HttpClient } from '~/application/protocols/http'
 import { LoadPokemonAbilityList } from '~/domain/usecases'
 import { PokemonAbilityModel } from '~/domain/models'
 
@@ -15,7 +15,7 @@ export class RemoteLoadPokemonAbilityList implements LoadPokemonAbilityList {
     private readonly httpClient: HttpClient<RemoteLoadPokemonAbilityList.Model>
   ) {}
 
-  async load(idOrName: string): Promise<Response<PokemonAbilityModel[]>> {
+  async load(idOrName: string | undefined): Promise<Response<PokemonAbilityModel[]>> {
     const httpResponse = await this.httpClient.request({
       method: 'get',
       url: `${this.url}/${idOrName}`

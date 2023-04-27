@@ -1,5 +1,5 @@
 import { injectable } from 'inversify'
-import { CacheStorage } from '~/../fdte/src/application/protocols/cache-storage'
+import { CacheStorage } from '~/application/protocols/cache-storage'
 
 @injectable()
 export class LocalStorageCacheStorage implements CacheStorage {

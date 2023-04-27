@@ -12,7 +12,7 @@ import {
   error,
   success
 } from '~/domain/common/utils'
-import { HttpResponse, HttpStatusCode } from '~/../fdte/src/application/protocols/http'
+import { HttpResponse, HttpStatusCode } from '~/application/protocols/http'
 
 export class RequestResponse<R> {
   private constructor(private readonly _response: R | undefined) {

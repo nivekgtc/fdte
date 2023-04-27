@@ -1,10 +1,8 @@
-import axios, { AxiosResponse } from 'axios'
-import { injectable } from 'inversify'
-import {
-  HttpResponse,
-  HttpClient,
-  HttpRequest
-} from '~/../fdte/src/application/protocols/http'
+import axios, { AxiosResponse } from "axios";
+import { injectable } from "inversify";
+import { HttpClient } from "~/application/protocols/http";
+
+import { HttpRequest, HttpResponse } from "~/application/protocols/http";
 
 @injectable()
 export class AxiosHttpClient implements HttpClient {
@@ -12,29 +10,28 @@ export class AxiosHttpClient implements HttpClient {
     method,
     url,
     body,
-    headers
+    headers,
   }: HttpRequest): Promise<HttpResponse> {
-    let axiosResponse: AxiosResponse
+    let axiosResponse: AxiosResponse;
 
     const extraHeaders = {
       ...headers,
-      'x-app': 'next-app'
-    }
+    };
 
     try {
       axiosResponse = await axios.request({
         url,
         data: body,
         headers: extraHeaders,
-        method
-      })
-    } catch (error) {
-      axiosResponse = error.response
+        method,
+      });
+    } catch (error: any) {
+      axiosResponse = error.response;
     }
 
     return {
       statusCode: axiosResponse?.status,
-      body: axiosResponse?.data
-    }
+      body: axiosResponse?.data,
+    };
   }
 }
