@@ -3,7 +3,7 @@ import { POKEMON_SLICE_INITIAL_STATE, PokemonSliceState, SET_POKEMON_ABILITY, po
 import { setPokemonAbilityReducer } from '../actions'
 import { createHydratedSlice } from '~/store/helpers'
 
-export const authSlice = createHydratedSlice<
+export const pokemonSlice = createHydratedSlice<
   PokemonSliceState,
   SliceCaseReducers<PokemonSliceState>,
   typeof pokemonSliceName

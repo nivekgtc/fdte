@@ -1,4 +1,4 @@
-import { HYDRATE } from 'next-redux-wrapper'
+// import { HYDRATE } from 'next-redux-wrapper'
 import {
   ActionReducerMapBuilder,
   createAction,
@@ -23,7 +23,7 @@ export const createHydratedSlice = <
   reducers: ValidateSliceCaseReducers<T, Reducers>
   extraReducers?: ((builder: ActionReducerMapBuilder<T>) => void) | undefined
 }) => {
-  const hydrateSlice = createAction<T>(HYDRATE)
+  // const hydrateSlice = createAction<T>(HYDRATE)
   return createSlice({
     name,
     initialState,
@@ -35,12 +35,12 @@ export const createHydratedSlice = <
       ...reducers
     },
     extraReducers: (builder) => {
-      builder.addCase(hydrateSlice, (state, action) => {
-        return {
-          ...state,
-          ...action.payload[name]
-        }
-      })
+      // builder.addCase(hydrateSlice, (state, action) => {
+      //   return {
+      //     ...state,
+      //     ...action.payload[name]
+      //   }
+      // })
 
       return extraReducers?.(builder)
     }
