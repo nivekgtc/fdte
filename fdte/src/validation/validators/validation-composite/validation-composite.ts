@@ -2,7 +2,7 @@ import { FieldValidation } from '~/validation/protocols'
 import {
   Validation,
   ValidationErrorType
-} from '~/../fdte/src/presentation/common/protocols'
+} from '~/presentation/common/protocols'
 
 export class ValidationComposite implements Validation {
   private constructor(private readonly validators: FieldValidation[]) {}

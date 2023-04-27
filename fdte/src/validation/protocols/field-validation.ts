@@ -1,4 +1,4 @@
-import { ValidationErrorType } from '~/../fdte/src/presentation/common/protocols'
+import { ValidationErrorType } from '~/presentation/common/protocols'
 
 export interface FieldValidation {
   field: string
