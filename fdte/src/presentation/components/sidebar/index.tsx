@@ -1,9 +1,6 @@
-import React from "react";
-
-import Button from "components/Button";
-
 import iconPlus from "assets/images/plus.png";
 
+import { Button } from "..";
 import * as S from "./styled";
 
 const Sidebar = () => (

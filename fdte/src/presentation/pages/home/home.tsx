@@ -1,10 +1,10 @@
-import React from "react";
-
+import { Button } from "~/presentation/components";
 import * as S from "./styled";
 
 const HomePage = () => (
   <S.HomeWrapper>
-    <h1>Home</h1>
+    <S.PokemonImage />
+    <Button text="Start" />
   </S.HomeWrapper>
 );
 

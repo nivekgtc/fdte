@@ -3,18 +3,17 @@ export interface Validation {
     fieldName: string,
     fieldValue: object,
     ...args: unknown[]
-  ) => ValidationErrorType | undefined
+  ) => ValidationErrorType | undefined;
 }
 
 export type ParsedError = {
-  error: string
-  option: any
-}
+  error: string;
+  option: any;
+};
 
 export type ValidationErrorType = {
-  name: string
+  name: string;
   option?: {
-    [key: string]: string | number
-  }
-}
-
+    [key: string]: string | number;
+  };
+};

@@ -1,12 +1,13 @@
-import { createContext } from 'react'
-import { Container } from 'inversify'
+import React, { createContext } from "react"
+
+import { Container } from "inversify"
 
 type ContainerContext = {
   container: Container | null
 }
 
 export const InversifyContext = createContext<ContainerContext>({
-  container: null
+  container: null,
 })
 
 type ContainerProviderProps = {
@@ -14,13 +15,8 @@ type ContainerProviderProps = {
   children: React.ReactNode
 }
 
-const ContainerProvider: React.FC<ContainerProviderProps> = ({
-  container,
-  children
-}) => (
-  <InversifyContext.Provider value={{ container }}>
-    {children}
-  </InversifyContext.Provider>
+const ContainerProvider: React.FC<ContainerProviderProps> = ({ container, children }) => (
+  <InversifyContext.Provider value={{ container }}>{children}</InversifyContext.Provider>
 )
 
 export default ContainerProvider

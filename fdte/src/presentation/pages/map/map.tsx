@@ -1,14 +1,16 @@
-import React from "react";
-
-import Sidebar from "components/Sidebar";
-
 import * as S from "./styled";
+import { Sidebar } from "~/presentation/components";
 
-const MapPage = () => (
-  <S.MapWrapper className="map">
-    <Sidebar />
+const MapPage = () => {
 
-  </S.MapWrapper>
-);
+
+  return (
+    <S.MapWrapper className="map">
+      <Sidebar />
+  
+    </S.MapWrapper>
+  );
+}
+
 
 export default MapPage;
