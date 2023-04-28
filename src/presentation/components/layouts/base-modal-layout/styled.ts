@@ -39,12 +39,11 @@ export const WrapperStyle = styled.div`
   }
 
   display: flex;
+  flex: 1;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 
   h1 {
     font-family: ${(props) => props.theme.typography.fontFamily};
@@ -81,5 +80,26 @@ export const WrapperStyle = styled.div`
       width: 2px;
       height: 40px;
     }
+  }
+
+  & .ability {
+    display: flex;
+    flex: 0 0 calc(50% - 10px);
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 40px;
+
+    //TODO -> apply theme later
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    text-transform: uppercase;
+    color: ${(props) => props.theme.neutral[700]};
   }
 `;

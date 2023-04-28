@@ -1,9 +1,13 @@
 import { ModalLayout } from "..";
 import { Button, InputText } from "../..";
+import { Types } from "../../types/types";
 import { ModalLayoutProps } from "../modal-layout/modal-layout.props";
 import { Statistics } from "./components";
 import { StatisticsProps } from "./components/statistics/statistics.props";
 import * as S from "./styled";
+
+const mockTypesValues = ["fire", "ground", "eletric", "ice"];
+const mockAbilityValues = ["overgrow", "clorofila"];
 
 const mockStatisticsValues: StatisticsProps[] = [
   {
@@ -64,15 +68,15 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
             <h2>TIPO</h2>
             <hr />
           </S.Divider>
-          <span>{[].map((item) => item)}</span>
+          <Types types={mockTypesValues as any} />
+          {/* <span>{[].map((item) => item)}</span> */}
 
           <S.Divider>
             <hr />
             <h2>HABILIDADES</h2>
             <hr />
           </S.Divider>
-          {([] as unknown as any)?.join(",")}
-
+          <span className="ability">{mockAbilityValues?.join(", ")}</span>
           <S.Divider>
             <hr />
             <h2>ESTATÍSTICAS</h2>
