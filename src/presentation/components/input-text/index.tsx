@@ -1,14 +1,14 @@
-import { Control, Controller } from "react-hook-form";
-import * as S from "./styled";
 import { Fragment } from "react";
+import { Control, Controller } from "react-hook-form";
 import { ValidationErrorType } from "~/presentation/common/protocols";
+import * as S from "./styled";
 
 type InputProps = {
-  className: string
-  label: string
-  type: string
-  placeholder: string
-  name: string
+  className?: string
+  label?: string
+  type?: string
+  placeholder?: string
+  name?: string
 }
 
 type Props = InputProps & {
