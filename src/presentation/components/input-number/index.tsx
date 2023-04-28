@@ -1,10 +1,22 @@
-import React from "react";
-
 import chevron from "assets/images/chevronDownBlack.png";
 
 import * as S from "./styled";
 
-const InputNumber = ({ className, label, placeholder, name, suffix }) => (
+type Props = {
+  className?: string;
+  label?: string;
+  placeholder?: string;
+  name: string;
+  suffix?: string;
+};
+
+const InputNumber = ({
+  className,
+  label,
+  placeholder,
+  name,
+  suffix,
+}: Props) => (
   <S.InputNumberWrapper className={className}>
     {label && <S.Label>{label}</S.Label>}
 

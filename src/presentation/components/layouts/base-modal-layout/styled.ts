@@ -74,6 +74,7 @@ export const WrapperStyle = styled.div`
 
     margin: 24px 0 24px 0;
 
+    /* TODO -> map props below to parent component  */
     hr {
       display: flex;
       // flex: 1;

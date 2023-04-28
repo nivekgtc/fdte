@@ -43,6 +43,8 @@ export const ChildrenInfo = styled.div`
   flex: 1;
   flex-direction: column;
 
+  width: 100%;
+
   align-items: center;
   justify-content: center;
   padding: 0 30px 0 30px;
