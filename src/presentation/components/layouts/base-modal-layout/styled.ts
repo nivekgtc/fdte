@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import defaultPk from "assets/images/svgs/default-pokemon.svg";
-import empty from "assets/images/svgs/empty-pokemon.svg";
-import pokemon from "assets/images/svgs/pokemon.svg";
+import defaultPk from 'assets/images/svgs/default-pokemon.svg';
+import empty from 'assets/images/svgs/empty-pokemon.svg';
+import pokemon from 'assets/images/svgs/pokemon.svg';
 
 const imageType = {
-  defaultPk,
-  pokemon,
-  empty,
+	defaultPk,
+	pokemon,
+	empty,
 };
 
 export const Divider = styled.div`
@@ -34,73 +34,78 @@ export const Divider = styled.div`
 `;
 
 export const WrapperStyle = styled.div`
-  h1 {
-    color: ${(props) => props.theme.neutral[700]};
-  }
+	h1 {
+		color: ${(props) => props.theme.neutral[700]};
+	}
 
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+	display: flex;
+	flex: 1;
+	width: 100%;
+	flex-direction: column;
 
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 
-  h1 {
-    font-family: ${(props) => props.theme.typography.fontFamily};
-    font-size: ${(props) => props.theme.typography.h1.fontSize};
-    line-height: ${(props) => props.theme.typography.h1.lineHeight};
-    font-weight: bold;
-  }
+	h1 {
+		font-family: ${(props) => props.theme.typography.fontFamily};
+		font-size: ${(props) => props.theme.typography.h1.fontSize};
+		line-height: ${(props) => props.theme.typography.h1.lineHeight};
+		font-weight: bold;
+	}
 
-  h2 {
-    font-family: ${(props) => props.theme.typography.fontFamily};
-    font-size: ${(props) => props.theme.typography.h2.fontSize};
-    line-height: ${(props) => props.theme.typography.h2.lineHeight};
-    font-weight: 500;
-  }
+	h2 {
+		font-family: ${(props) => props.theme.typography.fontFamily};
+		font-size: ${(props) => props.theme.typography.h2.fontSize};
+		line-height: ${(props) => props.theme.typography.h2.lineHeight};
+		font-weight: 500;
+	}
 
-  label {
-    font-family: ${(props) => props.theme.typography.fontFamily};
-    font-size: ${(props) => props.theme.typography.label.fontSize};
-    line-height: ${(props) => props.theme.typography.label.lineHeight};
-    font-weight: bold;
-  }
+	label {
+		font-family: ${(props) => props.theme.typography.fontFamily};
+		font-size: ${(props) => props.theme.typography.label.fontSize};
+		line-height: ${(props) => props.theme.typography.label.lineHeight};
+		font-weight: bold;
+	}
 
-  & .metrics {
-    display: flex;
+	& .metrics {
+		display: flex;
 
-    align-items: center;
-    justify-content: space-between;
+		align-items: center;
+		justify-content: space-around;
 
-    margin: 24px 0 24px 0;
+		margin: 24px 0;
 
-    /* TODO -> map props below to parent component  */
-    hr {
-      display: flex;
-      // flex: 1;
-      width: 2px;
-      height: 40px;
-    }
-  }
+		:nth-child(1n) {
+			text-align: center;
+		}
 
-  & .ability {
-    display: flex;
-    flex: 0 0 calc(50% - 10px);
+		/* TODO -> map props below to parent component  */
+		hr {
+			display: flex;
+			// flex: 1;
+			width: 2px;
+			height: 40px;
+		}
+	}
 
-    align-items: center;
-    justify-content: center;
+	& .ability {
+		display: flex;
+		flex: 0 0 calc(50% - 10px);
 
-    margin: 40px;
+		align-items: center;
+		justify-content: center;
 
-    //TODO -> apply theme later
-    font-family: "Open Sans";
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
+		margin: 40px;
 
-    text-transform: uppercase;
-    color: ${(props) => props.theme.neutral[700]};
-  }
+		//TODO -> apply theme later
+		font-family: 'Open Sans';
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 16px;
+		letter-spacing: 0em;
+		text-align: center;
+
+		text-transform: uppercase;
+		color: ${(props) => props.theme.neutral[700]};
+	}
 `;
