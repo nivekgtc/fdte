@@ -118,13 +118,3 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 };
 
 export default AshAvatar;
-
-/**
- * TODO -
- * [x] -> Inserir animação do tooltip ao passar o mouse em cima do Ash
- *    [x] Mostrar tooltip de acordo com os critérios de:
- *        [+-] A lista de pokemons tem espaços livres - ícone de pesquisa
- *        [+-] A lista está cheia - ícone de alerta
- *        [x] Está fazendo fetch - ícone de loading
- *  [x] -> Fazer a troca de imagem pro Ash caminhar
- */
