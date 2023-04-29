@@ -1,8 +1,8 @@
+import { useAppSelector } from '~/presentation/hooks';
 import { ModalLayout } from '..';
 import { Button, InputText } from '../..';
 import { Types } from '../../types/types';
 import { ModalLayoutProps } from '../modal-layout/modal-layout.props';
-import { Statistics } from './components';
 import { StatisticsProps } from './components/statistics/statistics.props';
 import * as S from './styled';
 
@@ -38,10 +38,18 @@ const mockStatisticsValues: StatisticsProps[] = [
 ];
 
 const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
+	const pokemon = useAppSelector((state) => state.pokemonSlice?.pokemon);
+
+	if (!pokemon) return null;
+
+	// TODO create utils
+	const getStat = (statName: string) =>
+		pokemon?.stats?.find((stat) => stat.stat.name === statName);
+
 	return (
 		<ModalLayout imageType={imageType}>
 			<S.WrapperStyle>
-				<h1>BULBASAUR</h1>
+				<h1>{pokemon?.name.toUpperCase()}</h1>
 				<span>
 					<InputText name="name" />
 					{/* TODO ->implement edition*/}
@@ -49,17 +57,22 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
 					<span className="metrics">
 						<div>
 							<label>HP</label>
-							<h2>45/45</h2>
+							<h2>
+								{getStat('hp')?.effort} / {getStat('hp')?.base_stat}
+							</h2>
 						</div>
 						<hr />
 						<div>
 							<label>ALTURA</label>
-							<h2>0.7M</h2>
+							{/* <h2>0.7M</h2> */}
+							{/* TODO Transform height */}
+							<h2>{pokemon?.height}M</h2>
 						</div>
 						<hr />
 						<div>
 							<label>PESO</label>
-							<h2>6.9</h2>
+							{/*  */}
+							<h2>{pokemon?.weight}</h2>
 						</div>
 					</span>
 
@@ -68,7 +81,7 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
 						<h2>TIPO</h2>
 						<hr />
 					</S.Divider>
-					<Types types={mockTypesValues as any} />
+					<Types types={pokemon?.types?.map((type) => type.type.name) as any} />
 					{/* <span>{[].map((item) => item)}</span> */}
 
 					<S.Divider>
@@ -76,16 +89,18 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
 						<h2>HABILIDADES</h2>
 						<hr />
 					</S.Divider>
-					<span className="ability">{mockAbilityValues?.join(', ')}</span>
+					<span className="ability">
+						{pokemon.abilities?.map((item) => item.ability.name).join(', ')}
+					</span>
 					<S.Divider>
 						<hr />
 						<h2>ESTATÍSTICAS</h2>
 						<hr />
 					</S.Divider>
 
-					{mockStatisticsValues.map((mock) => (
+					{/* {mockStatisticsValues.map((mock) => (
 						<Statistics {...mock} />
-					))}
+					))} */}
 
 					<Button text="LIBERAR POKEMON" />
 				</span>

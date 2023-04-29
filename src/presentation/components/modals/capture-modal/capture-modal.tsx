@@ -1,16 +1,16 @@
-import { BaseModalLayout } from "../../layouts"
+import { useAppSelector } from '~/presentation/hooks';
+import { BaseModalLayout } from '../../layouts';
 
 type Props = {
-  visible: boolean // TODO - migrate to redux
-}
+	visible: boolean; // TODO - migrate to redux
+};
 
-const CaptureModal = ({visible}: Props) => {
+const CaptureModal = () => {
+	const visible = useAppSelector((state) => state.pokemonSlice?.modalCapture);
 
-  if (!visible) return null
+	if (!visible) return null;
 
-  return <BaseModalLayout imageType="defaultPk">
-    
-  </BaseModalLayout>
-}
+	return <BaseModalLayout imageType="defaultPk"></BaseModalLayout>;
+};
 
-export default CaptureModal
+export default CaptureModal;
