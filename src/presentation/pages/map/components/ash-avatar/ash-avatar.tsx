@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	TooltipLoadingIcon,
 	TooltipSearchIcon,
@@ -31,7 +31,23 @@ const Tooltip = ({ type }) => {
 };
 
 const AshAvatar = ({ position }: AshAvatarProps) => {
-	const [isHovering, setIsHovering] = useState(false);
+	const [isHovering, setIsHovering] = useState(true);
+	const [isWalking, setIsWalking] = useState(false);
+	const [currentImage, setCurrentImage] = useState(position);
+
+	const walkingImages = ['ashRightLeg', 'ashLeftLeg'];
+
+	const toggleImage = () => {
+		if (isWalking) return resetImage();
+
+		setIsWalking(true);
+		setCurrentImage('ashRightLeg');
+	};
+
+	const resetImage = () => {
+		setIsWalking(false);
+		setCurrentImage('ashFront');
+	};
 
 	const handleMouseEnter = () => {
 		setIsHovering(true);
@@ -41,9 +57,28 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 		setIsHovering(false);
 	};
 
+	useEffect(() => {
+		let intervalId: any;
+		if (isWalking) {
+			let currentIndex = 0;
+			intervalId = setInterval(() => {
+				currentIndex = currentIndex === 0 ? 1 : 0;
+				setCurrentImage(walkingImages[currentIndex]);
+			}, 200);
+		} else {
+			clearInterval(intervalId);
+			setCurrentImage('ashFront');
+		}
+		return () => clearInterval(intervalId);
+	}, [isWalking, walkingImages]);
+
 	return (
 		<Container onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-			<AshImage position={position} />
+			<AshImage
+				position={currentImage}
+				onClick={toggleImage}
+				whileHover={{ scale: 1.1 }}
+			/>
 			{isHovering && <Tooltip type="loading" />}
 		</Container>
 	);
@@ -52,10 +87,11 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 export default AshAvatar;
 
 /**
- * [] -> Inserir animação do tooltip ao passar o mouse em cima do Ash
+ * TODO -
+ * [x] -> Inserir animação do tooltip ao passar o mouse em cima do Ash
  *    [] Mostrar tooltip de acordo com os critérios de:
  *        [] A lista de pokemons tem espaços livres - ícone de pesquisa
  *        [] A lista está cheia - ícone de alerta
  *        [] Está fazendo fetch - ícone de loading
- *
+ *  [x] -> Fazer a troca de imagem pro Ash caminhar
  */

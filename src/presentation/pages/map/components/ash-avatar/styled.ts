@@ -2,6 +2,7 @@ import ashFront from 'assets/images/ashFront.png';
 import ashLeftLeg from 'assets/images/ashLeftLeg.png';
 import ashRightLeg from 'assets/images/ashRightLeg.png';
 import ashStop from 'assets/images/ashStop.png';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { AshAvatarProps } from './ash-avatar.props';
 
@@ -17,7 +18,7 @@ export const Container = styled.div`
 	left: 50%;
 `;
 
-export const AshImage = styled.div<AshAvatarProps>`
+export const AshImage = styled(motion.div)<AshAvatarProps>`
 	/* position: relative; */
 	/* top: 60%;
 	left: 50%; */
@@ -27,6 +28,6 @@ export const AshImage = styled.div<AshAvatarProps>`
 	width: 64px;
 	height: 64px;
 
-	background-image: url(${(props) =>
-		mapPositionToProps[props.position] || ashFront});
+	background-image: url(${(props) => mapPositionToProps[props.position]});
+	background-repeat: no-repeat;
 `;

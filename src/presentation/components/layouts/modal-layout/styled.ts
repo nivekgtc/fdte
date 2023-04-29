@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import defaultPk from 'assets/images/svgs/default-pokemon.svg';
 import empty from 'assets/images/svgs/empty-pokemon.svg';
 import pokemon from 'assets/images/svgs/pokemon.svg';
+import { pxToRem } from '~/application/common/helpers';
 
 const imageType = {
 	defaultPk,
@@ -24,6 +25,7 @@ export const Container = styled.div`
 		height: 0;
 	}
 
+	padding-top: 12px;
 	margin-top: 170px;
 
 	display: flex;
@@ -36,6 +38,28 @@ export const Container = styled.div`
 	border-radius: 5px;
 
 	background: ${(props) => props.theme.palette.primary.gradient};
+
+	.close-container {
+		align-self: flex-end;
+		padding-right: 12px;
+	}
+
+	.close {
+		/* align-self: flex-end;
+		padding-right: ${pxToRem(12)}px;
+
+		width: ${pxToRem(38 / 2)}rem;
+		height: ${pxToRem(38 / 2)}rem;
+
+		background: ${(props) => props.theme.neutral[200]};
+
+		border: 2px solid ${(props) => props.theme.neutral[600]};
+		border-radius: 50%;
+
+		flex: none;
+		order: 0;
+		flex-grow: 0; */
+	}
 `;
 
 export const ChildrenInfo = styled.div`
