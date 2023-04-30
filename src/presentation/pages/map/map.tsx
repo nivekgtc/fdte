@@ -1,5 +1,6 @@
 import { ApiTypes } from '~/ioc/types';
-import { CaptureModal, Sidebar } from '~/presentation/components';
+import { Sidebar } from '~/presentation/components';
+import Modal from '~/presentation/components/modals/modal/modal';
 import { useService } from '~/presentation/hooks';
 import { AshAvatar } from './components';
 import * as S from './styled';
@@ -12,7 +13,8 @@ const MapPage = () => {
 			<Sidebar />
 			<AshAvatar position="ashFront" />
 			<S.ContainerMap>
-				<CaptureModal />
+				<Modal />
+				{/* <CaptureModal /> */}
 				{/* <CreatePokemonModal imageType="empty" /> */}
 			</S.ContainerMap>
 		</S.MapWrapper>

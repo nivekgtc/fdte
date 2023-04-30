@@ -7,7 +7,7 @@ import {
 } from '~/presentation/components/icons';
 import { useAppDispatch } from '~/presentation/hooks';
 import { useLazyGetRandomPokemonQuery } from '~/store/api/services/pokemon/pokemon.api';
-import { setPokemon } from '~/store/features/pokemon/actions';
+import { setModal, setPokemon } from '~/store/features/pokemon/actions';
 import { AshAvatarProps } from './ash-avatar.props';
 import { AshImage, Container } from './styled';
 
@@ -94,7 +94,10 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 	);
 
 	useEffect(() => {
-		if (isSuccess) dispatch(setPokemon(data));
+		if (isSuccess) {
+			dispatch(setPokemon(data));
+			dispatch(setModal('capture'));
+		}
 	}, [isSuccess, data]);
 	const tooltipType = (): ITooltipTypes => {
 		if (isLoadingPokemon) return 'loading';

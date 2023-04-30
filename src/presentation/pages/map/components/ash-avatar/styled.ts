@@ -13,7 +13,7 @@ const mapPositionToProps = {
 	ashStop,
 };
 export const Container = styled.div`
-	position: relative;
+	/* position: relative; */
 	top: 60%;
 	left: 50%;
 `;
