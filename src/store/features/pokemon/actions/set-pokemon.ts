@@ -11,13 +11,7 @@ export const setPokemonReducer: ReducerMap<PokemonSliceState, Pokemon> = (
 	state,
 	action
 ) => {
-	state.modalCapture = true;
-
 	state.pokemon = action.payload;
 
 	return state;
-	// return produce(state, (draftState) => {
-	// 	draftState.modalCapture = true;
-	// 	draftState.pokemon = action.payload;
-	// });
 };
