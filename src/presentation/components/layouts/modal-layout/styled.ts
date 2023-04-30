@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import close from 'assets/images/close.png';
 import defaultPk from 'assets/images/svgs/default-pokemon.svg';
 import empty from 'assets/images/svgs/empty-pokemon.svg';
 import pokemon from 'assets/images/svgs/pokemon.svg';
@@ -16,6 +17,7 @@ export const Container = styled.div`
 	min-height: 480px;
 
 	width: 330px;
+	/* height: 80%; */
 	height: 600px;
 	/* max-height: 50px; */
 	overflow: scroll;
@@ -25,15 +27,13 @@ export const Container = styled.div`
 		height: 0;
 	}
 
-	padding-top: 12px;
-	margin-top: 170px;
+	margin-top: 130px;
 
 	display: flex;
 
 	flex-direction: column;
 	align-self: center;
 	align-items: center;
-	/* justify-content: center; */
 
 	border-radius: 5px;
 
@@ -41,25 +41,31 @@ export const Container = styled.div`
 
 	.close-container {
 		align-self: flex-end;
-		padding-right: 12px;
+
+		:first-child {
+			scale: 0.8;
+		}
 	}
+`;
 
-	.close {
-		/* align-self: flex-end;
-		padding-right: ${pxToRem(12)}px;
+export const Image = styled.image`
+	align-self: flex-end;
+	padding-right: ${pxToRem(12)}px;
 
-		width: ${pxToRem(38 / 2)}rem;
-		height: ${pxToRem(38 / 2)}rem;
+	width: ${pxToRem(38 / 2)}rem;
+	height: ${pxToRem(38 / 2)}rem;
 
-		background: ${(props) => props.theme.neutral[200]};
+	background: ${(props) => props.theme.neutral[200]};
 
-		border: 2px solid ${(props) => props.theme.neutral[600]};
-		border-radius: 50%;
+	border: 2px solid ${(props) => props.theme.neutral[600]};
+	border-radius: 50%;
 
-		flex: none;
-		order: 0;
-		flex-grow: 0; */
-	}
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+
+	background-image: url(${close});
+	background-repeat: no-repeat;
 `;
 
 export const ChildrenInfo = styled.div`
@@ -73,7 +79,7 @@ export const ChildrenInfo = styled.div`
 	justify-content: center;
 	padding: 0 ${27 / 16}rem;
 
-	margin-top: 130px;
+	margin-top: 70px;
 
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
@@ -98,12 +104,13 @@ export const PokemonImage = styled.image<PokemonImageType>`
 	width: 227px;
 	height: 227px;
 
-	margin-top: -113px;
+	margin-top: -100px;
 	margin-bottom: 36px;
-	background-color: orange;
+	background-color: white;
+	background-image: url(${(props) => props.source});
+	background-repeat: no-repeat;
+	background-position: center;
 
-	border: 4px ${(props) => props.theme.palette.primary.default};
+	border: solid ${4 / 16}rem ${(props) => props.theme.palette.primary.default};
 	border-radius: 50%;
 `;
-
-// const PokemonImage = ({imageType: imageName}: PokemonImageType) => imageType[imageName]

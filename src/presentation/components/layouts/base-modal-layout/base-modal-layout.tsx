@@ -1,8 +1,11 @@
-import { useAppSelector } from '~/presentation/hooks';
+import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
+import { setModal } from '~/store/features/pokemon/actions';
+import { capture } from '~/store/features/pokemon/actions/capture';
 import { ModalLayout } from '..';
-import { Button, InputText } from '../..';
+import { PokeballIcon } from '../../icons';
 import { Types } from '../../types/types';
 import { ModalLayoutProps } from '../modal-layout/modal-layout.props';
+import { Statistics } from './components';
 import { StatisticsProps } from './components/statistics/statistics.props';
 import * as S from './styled';
 
@@ -37,8 +40,11 @@ const mockStatisticsValues: StatisticsProps[] = [
 	},
 ];
 
-const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
+const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
+	const dispatch = useAppDispatch();
 	const pokemon = useAppSelector((state) => state.pokemonSlice?.pokemon);
+
+	// const { control } = useForm();
 
 	if (!pokemon) return null;
 
@@ -46,12 +52,18 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
 	const getStat = (statName: string) =>
 		pokemon?.stats?.find((stat) => stat.stat.name === statName);
 
+	const onClose = () => dispatch(setModal(undefined));
+
+	const capturePokemon = () => {
+		dispatch(capture(pokemon));
+	};
+
 	return (
-		<ModalLayout imageType={imageType}>
+		<ModalLayout imageType={imageType} onClose={onClose}>
 			<S.WrapperStyle>
 				<h1>{pokemon?.name.toUpperCase()}</h1>
 				<span>
-					<InputText name="name" />
+					{/* <InputText name="name" /> */}
 					{/* TODO ->implement edition*/}
 
 					<span className="metrics">
@@ -101,10 +113,40 @@ const BaseModalLayout = ({ children, imageType }: ModalLayoutProps) => {
 					{/* {mockStatisticsValues.map((mock) => (
 						<Statistics {...mock} />
 					))} */}
+					<div>
+						<Statistics
+							icon="shield"
+							name={getStat('defense')?.stat.name}
+							rate={getStat('defense')?.effort}
+						/>
+						<Statistics
+							icon="shield"
+							name={getStat('attack')?.stat.name}
+							rate={getStat('attack')?.effort}
+						/>
+						<Statistics
+							icon="shield"
+							name={getStat('special-defense')?.stat.name}
+							rate={getStat('special-defense')?.effort}
+						/>
+						<Statistics
+							icon="shield"
+							name={getStat('special-attack')?.stat.name}
+							rate={getStat('special-attack')?.effort}
+						/>
+						<Statistics
+							icon="shield"
+							name={getStat('speed')?.stat.name}
+							rate={getStat('speed')?.effort}
+						/>
+					</div>
 
-					<Button text="LIBERAR POKEMON" />
+					{/* <Button text="LIBERAR POKEMON" /> */}
 				</span>
 			</S.WrapperStyle>
+			<S.PokeballContainer whileHover={{ scale: 1.1 }} onClick={capturePokemon}>
+				<PokeballIcon />
+			</S.PokeballContainer>
 		</ModalLayout>
 	);
 };

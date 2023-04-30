@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import defaultPk from 'assets/images/svgs/default-pokemon.svg';
 import empty from 'assets/images/svgs/empty-pokemon.svg';
 import pokemon from 'assets/images/svgs/pokemon.svg';
+import { motion } from 'framer-motion';
 
 const imageType = {
 	defaultPk,
@@ -31,6 +32,10 @@ export const Divider = styled.div`
     height: 1px;
     background-color: ${(props) => props.theme.neutral[500]};;
   }
+`;
+
+export const PokeballContainer = styled(motion.div)`
+	cursor: pointer;
 `;
 
 export const WrapperStyle = styled.div`

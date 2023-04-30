@@ -1,7 +1,8 @@
 export interface PokemonImageType {
-  imageType: "defaultPk" | "pokemon" | "empty";
+	imageType: 'defaultPk' | 'pokemon' | 'empty';
 }
 
 export interface ModalLayoutProps extends PokemonImageType {
-  children?: React.ReactNode;
+	children?: React.ReactNode;
+	onClose?: () => void;
 }
