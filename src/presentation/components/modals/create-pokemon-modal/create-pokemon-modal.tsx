@@ -1,7 +1,7 @@
 // import { ModalLayout } from "..";
 // import { ModalLayoutProps } from "../modal-layout/modal-layout.props";
 import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import {
 	Button,
@@ -43,19 +43,31 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 		value: item.name,
 	}));
 
+	const getImageUploadedUrl = () => {
+		const imageUrl = refUploadImage.current.getImageUrl();
+		return imageUrl;
+	};
+
 	const onSubmit = async (
 		data: PokemonFormProps
 		// e: React.SyntheticEvent | undefined
 	) => {
 		// e?.preventDefault();
-		const mappedPokemon = mapPokemonFormToDefaultMode(data);
+		const mappedPokemon = mapPokemonFormToDefaultMode(
+			data,
+			getImageUploadedUrl()
+		);
 		dispatch(capture(mappedPokemon));
-		console.log({ data });
+		console.log({ data, mappedPokemon });
 	};
 	const onError = (errors, e) => console.log({ errors });
 
+	const refUploadImage = useRef<{
+		getImageUrl: () => string;
+	}>();
+
 	return (
-		<ModalLayout imageType={imageType}>
+		<ModalLayout imageType={imageType} ref={refUploadImage}>
 			<S.WrapperStyle
 				onSubmit={(e): React.SyntheticEvent => {
 					e.preventDefault();

@@ -37,7 +37,8 @@ const findStat = (name: string, atObject: StatObject) => ({
 });
 
 export const mapPokemonFormToDefaultMode = (
-	pokemonForm: PokemonFormProps
+	pokemonForm: PokemonFormProps,
+	imageUrl: string
 ): Pokemon => {
 	const { abilities, stats, type, ...restProps } = pokemonForm;
 
@@ -57,6 +58,9 @@ export const mapPokemonFormToDefaultMode = (
 				name: value,
 			},
 		})),
+		sprites: {
+			front_default: imageUrl,
+		},
 	};
 	return pokemonMapped;
 };
