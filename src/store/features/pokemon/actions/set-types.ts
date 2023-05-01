@@ -3,14 +3,14 @@ import { NamedAPIResource } from '~/domain/models';
 import { ActionMap, ReducerMap } from '~/store/types/action-reducer-map';
 import { POKEMON_SLICE_ACTIONS, PokemonSliceState } from '../types';
 
-export const setAbilities: ActionMap<NamedAPIResource[]> = createAction(
-	POKEMON_SLICE_ACTIONS.SET_ABILITIES
+export const setTypes: ActionMap<NamedAPIResource[]> = createAction(
+	POKEMON_SLICE_ACTIONS.SET_TYPES
 );
 
-export const setPokemonAbilityReducer: ReducerMap<
+export const setTypesReducer: ReducerMap<
 	PokemonSliceState,
 	NamedAPIResource[]
 > = (state, action) => {
-	state.abilities = action.payload;
+	state.types = action.payload;
 	return state;
 };
