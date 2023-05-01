@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import editIcon from 'assets/images/editIcon.png';
 import defaultPk from 'assets/images/svgs/default-pokemon.svg';
 import empty from 'assets/images/svgs/empty-pokemon.svg';
 import pokemon from 'assets/images/svgs/pokemon.svg';
@@ -41,6 +42,33 @@ export const PokeballContainer = styled(motion.div)`
 export const WrapperStyle = styled.div`
 	h1 {
 		color: ${(props) => props.theme.neutral[700]};
+	}
+
+	.name {
+		display: flex;
+
+		align-items: center;
+	}
+
+	.edit {
+		display: flex;
+		/* align-items: center; */
+		/* justify-content: center; */
+
+		input {
+			width: 180px;
+			margin-right: 10px;
+		}
+
+		button {
+			margin-right: 8px;
+
+			width: 48px;
+			height: 48px;
+			background-color: ${(props) => props.theme.neutral[300]};
+			border-radius: 4px;
+			border: ${(props) => props.theme.neutral[300]};
+		}
 	}
 
 	display: flex;
@@ -113,4 +141,17 @@ export const WrapperStyle = styled.div`
 		text-transform: uppercase;
 		color: ${(props) => props.theme.neutral[700]};
 	}
+`;
+
+export const EditIcon = styled.image`
+	width: 16px;
+	height: 16px;
+
+	margin-left: 10px;
+
+	background-image: url(${editIcon});
+	background-repeat: no-repeat;
+	background-size: auto;
+
+	cursor: pointer;
 `;

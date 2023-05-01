@@ -1,13 +1,23 @@
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
-import { setModal } from '~/store/features/pokemon/actions';
+import { setModal, setPokemon } from '~/store/features/pokemon/actions';
 import { capture } from '~/store/features/pokemon/actions/capture';
 import { ModalLayout } from '..';
+import { Button, InputText } from '../..';
 import { PokeballIcon } from '../../icons';
 import { Types } from '../../types/types';
 import { ModalLayoutProps } from '../modal-layout/modal-layout.props';
 import { Statistics } from './components';
 import { StatisticsProps } from './components/statistics/statistics.props';
 import * as S from './styled';
+
+import * as yup from 'yup';
+
+import checkIcon from 'assets/images/checkIcon.png';
+import close from 'assets/images/close.png';
+import { useForm } from 'react-hook-form';
+import { edit } from '~/store/features/pokemon/actions/edit';
+import { remove } from '~/store/features/pokemon/actions/remove';
 
 const mockTypesValues = ['fire', 'ground', 'eletric', 'ice'];
 const mockAbilityValues = ['overgrow', 'clorofila'];
@@ -43,8 +53,19 @@ const mockStatisticsValues: StatisticsProps[] = [
 const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 	const dispatch = useAppDispatch();
 	const pokemon = useAppSelector((state) => state.pokemonSlice?.pokemon);
+	const modalType = useAppSelector((state) => state.pokemonSlice.modal.name);
 
-	// const { control } = useForm();
+	const [isEditting, setIsEditting] = useState(false);
+
+	const { control, getValues } = useForm({
+		mode: 'all',
+		validationSchema: {
+			name: yup.string().required(),
+		},
+		defaultValues: {
+			name: pokemon?.name,
+		},
+	});
 
 	if (!pokemon) return null;
 
@@ -58,14 +79,41 @@ const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 		dispatch(capture(pokemon));
 	};
 
+	const leavePokemon = () => {
+		dispatch(remove(pokemon.id));
+	};
+
+	const toggleEdition = () => setIsEditting((editing) => !editing);
+	const handleEditConfirm = () => {
+		const edittedPokemon = { ...pokemon, name: getValues().name };
+		dispatch(edit(edittedPokemon));
+		dispatch(setPokemon(edittedPokemon));
+		toggleEdition();
+	};
+
 	return (
 		<ModalLayout imageType={imageType} onClose={onClose}>
 			<S.WrapperStyle>
-				<h1>{pokemon?.name.toUpperCase()}</h1>
+				{/* TODO ->implement edition*/}
+				{!isEditting ? (
+					<span className="name">
+						<h1>{pokemon?.name.toUpperCase()} </h1>
+						{modalType === 'edit' && <S.EditIcon onClick={toggleEdition} />}
+					</span>
+				) : (
+					<span className="edit">
+						<InputText name="name" control={control} />
+						{/* TODO -> create icon component with mapping to svg and png */}
+						<Button icon={checkIcon} onClick={handleEditConfirm} />
+						<Button
+							icon={close}
+							onClick={() => {
+								setIsEditting(false);
+							}}
+						/>
+					</span>
+				)}
 				<span>
-					{/* <InputText name="name" /> */}
-					{/* TODO ->implement edition*/}
-
 					<span className="metrics">
 						<div>
 							<label>HP</label>
@@ -140,13 +188,19 @@ const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 							rate={getStat('speed')?.effort}
 						/>
 					</div>
-
-					{/* <Button text="LIBERAR POKEMON" /> */}
 				</span>
 			</S.WrapperStyle>
-			<S.PokeballContainer whileHover={{ scale: 1.1 }} onClick={capturePokemon}>
-				<PokeballIcon />
-			</S.PokeballContainer>
+			{modalType === 'edit' && (
+				<Button text="LIBERAR POKEMON" onClick={leavePokemon} />
+			)}
+			{modalType === 'capture' && (
+				<S.PokeballContainer
+					whileHover={{ scale: 1.1 }}
+					onClick={capturePokemon}
+				>
+					<PokeballIcon />
+				</S.PokeballContainer>
+			)}
 		</ModalLayout>
 	);
 };
