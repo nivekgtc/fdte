@@ -45,6 +45,8 @@ export const Container = styled.div`
 		:first-child {
 			scale: 0.8;
 		}
+
+		cursor: pointer;
 	}
 `;
 
