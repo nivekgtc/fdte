@@ -4,17 +4,21 @@ import {
 	setModalReducer,
 	setPokemonAbilityReducer,
 	setPokemonReducer,
+	setTypesReducer,
 } from '../actions';
 import { setCaptureReducer } from '../actions/capture';
+import { setEditReducer } from '../actions/edit';
 import { setRemoveReducer } from '../actions/remove';
 import {
 	CAPTURE,
+	EDIT,
 	POKEMON_SLICE_INITIAL_STATE,
 	PokemonSliceState,
 	REMOVE,
+	SET_ABILITIES,
 	SET_MODAL,
 	SET_POKEMON,
-	SET_POKEMON_ABILITY,
+	SET_TYPES,
 	pokemonSliceName,
 } from '../types';
 
@@ -26,10 +30,12 @@ export const pokemonSlice = createHydratedSlice<
 	name: pokemonSliceName,
 	initialState: { ...POKEMON_SLICE_INITIAL_STATE },
 	reducers: {
-		[SET_POKEMON_ABILITY]: setPokemonAbilityReducer,
+		[SET_ABILITIES]: setPokemonAbilityReducer,
 		[SET_POKEMON]: setPokemonReducer,
 		[SET_MODAL]: setModalReducer,
 		[CAPTURE]: setCaptureReducer,
 		[REMOVE]: setRemoveReducer,
+		[EDIT]: setEditReducer,
+		[SET_TYPES]: setTypesReducer,
 	},
 });

@@ -1,15 +1,24 @@
-import { useState } from 'react';
-import { useAppSelector } from '~/presentation/hooks';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
+import { setModal } from '~/store/features/pokemon/actions';
 import { CloseIcon } from '../../icons';
 import { ModalLayoutProps } from './modal-layout.props';
 import * as S from './styled';
 
-const ModalLayout = ({ children, imageType, onClose }: ModalLayoutProps) => {
+const ModalLayout = (
+	{ children, imageType, onClose }: ModalLayoutProps,
+	ref
+) => {
+	const dispatch = useAppDispatch();
 	const [imageUrl, setImageUrl] = useState('');
 
 	const selectedImage = useAppSelector(
 		(state) => state.pokemonSlice.pokemon?.sprites.front_default
 	);
+
+	useImperativeHandle(ref, () => ({
+		getImageUrl: () => imageUrl,
+	}));
 
 	const modalType = useAppSelector((state) => state.pokemonSlice.modal.name);
 
@@ -28,9 +37,11 @@ const ModalLayout = ({ children, imageType, onClose }: ModalLayoutProps) => {
 		}
 	};
 
+	const handleOnClose = () => dispatch(setModal(undefined));
+
 	return (
 		<S.Container>
-			<div className="close-container" onClick={onClose}>
+			<div className="close-container" onClick={handleOnClose}>
 				{/* <img className="close" src={close} /> */}
 				<CloseIcon />
 			</div>
@@ -60,4 +71,4 @@ const ModalLayout = ({ children, imageType, onClose }: ModalLayoutProps) => {
 	);
 };
 
-export default ModalLayout;
+export default forwardRef(ModalLayout);
