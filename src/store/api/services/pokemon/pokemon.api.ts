@@ -1,5 +1,6 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { NamedAPIResource, NamedAPIResourceList } from '~/domain/models';
 import { generateRandomPokemonId } from '~/store/helpers/generate-random-poke-id';
 
 // const loadPokemonAbility = useService<RemoteLoadPokemonAbilityList>(ServicesTypes.POKEMON.LOAD_POKEMON_ABILITY_LIST)
@@ -19,11 +20,27 @@ export const pokemonApi = createApi({
 		getRandomPokemon: builder.query<any, void>({
 			query: () => `pokemon/${generateRandomPokemonId()}`,
 		}),
+		getPokemonTypes: builder.query<any, void>({
+			query: () => `type`,
+			transformResponse: (response: NamedAPIResourceList): NamedAPIResource[] =>
+				response.results,
+		}),
+		getPokemonAbilities: builder.query<any, void>({
+			query: () => `ability`,
+			transformResponse: (response: NamedAPIResourceList): NamedAPIResource[] =>
+				response.results,
+		}),
 	}),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 // export const { useGetPokemonByNameQuery } = pokemonApi;
-export const { useGetRandomPokemonQuery, useLazyGetRandomPokemonQuery } =
-	pokemonApi;
+export const {
+	useGetRandomPokemonQuery,
+	useLazyGetRandomPokemonQuery,
+	useGetPokemonTypesQuery,
+	useLazyGetPokemonTypesQuery,
+	useGetPokemonAbilitiesQuery,
+	useLazyGetPokemonAbilitiesQuery,
+} = pokemonApi;

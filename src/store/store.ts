@@ -9,7 +9,7 @@ export type AppState = ReturnType<ReturnType<typeof createStore>['getState']>;
 
 export type StoreProps = {
 	pokemonSlice: PokemonSliceState;
-	[pokemonApi.reducerPath]: any;
+	[pokemonApi.reducerPath]: ReturnType<typeof pokemonApi.reducer>;
 };
 
 const createStore = () =>
