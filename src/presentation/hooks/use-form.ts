@@ -1,21 +1,32 @@
-import { FieldValues, Resolver, useForm as useFormRHF } from "react-hook-form";
-import { Validation } from "../common/protocols";
-import { useValidationResolver } from "./use-validation-resolver";
+import { yupResolver } from '@hookform/resolvers/yup';
+import {
+	FieldValues,
+	UseFormProps,
+	useForm as useFormRHF,
+} from 'react-hook-form';
+import { Validation } from '../common/protocols';
 
-type UseFormParams = {
-  validationSchema?: Validation;
-  mode: "all" | "onBlur" | "onChange" | "onSubmit" | "onTouched";
+type UseFormParams = UseFormProps & {
+	validationSchema?: Validation;
+	mode: 'all' | 'onBlur' | 'onChange' | 'onSubmit' | 'onTouched';
 };
 
 export const useForm = <T extends FieldValues>({
-  validationSchema,
-  mode,
+	validationSchema,
+	mode,
+	...props
 }: UseFormParams) => {
-  const resolver = useValidationResolver(
-    validationSchema
-  ) as unknown as Resolver<T, object>;
+	// const resolver = useValidationResolver(
+	// 	validationSchema
+	// ) as unknown as Resolver<T, object>;
 
-  const { control, handleSubmit } = useFormRHF<T>({ resolver, mode });
+	// const resolver = useValidationResolver(validationSchema);
 
-  return { control, handleSubmit };
+	const values = useFormRHF<T>({
+		resolver: yupResolver(validationSchema),
+		mode,
+		...props,
+	});
+
+	return values;
 };

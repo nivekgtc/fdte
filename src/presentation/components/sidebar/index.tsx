@@ -1,5 +1,6 @@
 import iconPlus from 'assets/images/plus.png';
 
+import { motion } from 'framer-motion';
 import { Pokemon } from '~/domain/models';
 import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
 import { setModal, setPokemon } from '~/store/features/pokemon/actions';
@@ -16,6 +17,10 @@ const Sidebar = () => {
 			dispatch(setPokemon(pokemon));
 			dispatch(setModal('edit'));
 		}
+	};
+
+	const openCreateModal = () => {
+		dispatch(setModal('new'));
 	};
 
 	return (
@@ -36,7 +41,9 @@ const Sidebar = () => {
 				))}
 			</S.SideBarList>
 
-			<Button icon={iconPlus} />
+			<motion.div whileHover={{ scale: 1.1 }}>
+				<Button icon={iconPlus} onClick={openCreateModal} />
+			</motion.div>
 		</S.SideBarWrapper>
 	);
 };
