@@ -76,6 +76,7 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 					e.preventDefault();
 					handleSubmit(onSubmit, onError)(e);
 				}}
+				data-cy="create-or-edit-scratch"
 			>
 				<InputText name="name" label="Nome" control={control} />
 				<InputNumber name="hp" label="HP" control={control} />
@@ -94,6 +95,7 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 				</S.Divider>
 
 				<DropdownSelect
+					id="type"
 					name="type"
 					options={types?.map((item) => ({
 						label: item.name,
@@ -110,27 +112,32 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 				</S.Divider>
 
 				<DropdownSelect
+					id="abilities.0"
 					name="abilities.0"
 					control={control}
 					options={mapAbilities}
 				/>
 
 				<DropdownSelect
+					id="abilities.1"
 					name="abilities.1"
 					control={control}
 					options={mapAbilities}
 				/>
 				<DropdownSelect
+					id="abilities.2"
 					name="abilities.2"
 					control={control}
 					options={mapAbilities}
 				/>
 				<DropdownSelect
+					id="abilities.3"
 					name="abilities.3"
 					control={control}
 					options={mapAbilities}
 				/>
 				<DropdownSelect
+					id="abilities.4"
 					name="abilities.4"
 					control={control}
 					options={mapAbilities}

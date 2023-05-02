@@ -45,7 +45,11 @@ const Sidebar = (props) => {
 			</S.SideBarList>
 
 			<motion.div whileHover={{ scale: 1.1 }}>
-				<Button icon={iconPlus} onClick={openCreateModal} />
+				<Button
+					icon={iconPlus}
+					onClick={openCreateModal}
+					data-cy="button-create-pokemon"
+				/>
 			</motion.div>
 		</S.SideBarWrapper>
 	);
