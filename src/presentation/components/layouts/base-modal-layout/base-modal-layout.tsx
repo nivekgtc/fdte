@@ -5,7 +5,6 @@ import { capture } from '~/store/features/pokemon/actions/capture';
 import { ModalLayout } from '..';
 import { Button, InputText } from '../..';
 import { PokeballIcon } from '../../icons';
-import { Types } from '../../types/types';
 import { ModalLayoutProps } from '../modal-layout/modal-layout.props';
 import { Statistics } from './components';
 import { StatisticsProps } from './components/statistics/statistics.props';
@@ -18,6 +17,7 @@ import close from 'assets/images/close.png';
 import { useForm } from 'react-hook-form';
 import { edit } from '~/store/features/pokemon/actions/edit';
 import { remove } from '~/store/features/pokemon/actions/remove';
+import { Types } from '../../types/types';
 
 const mockTypesValues = ['fire', 'ground', 'eletric', 'ice'];
 const mockAbilityValues = ['overgrow', 'clorofila'];
@@ -140,7 +140,6 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 						<hr />
 					</S.Divider>
 					<Types types={pokemon?.types?.map((type) => type.type.name) as any} />
-					{/* <span>{[].map((item) => item)}</span> */}
 
 					<S.Divider>
 						<hr />
@@ -156,9 +155,6 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 						<hr />
 					</S.Divider>
 
-					{/* {mockStatisticsValues.map((mock) => (
-						<Statistics {...mock} />
-					))} */}
 					<div>
 						<Statistics
 							icon="shield"
@@ -166,7 +162,7 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 							rate={getStat('defense')?.effort}
 						/>
 						<Statistics
-							icon="shield"
+							icon="sword"
 							name={getStat('attack')?.stat.name}
 							rate={getStat('attack')?.effort}
 						/>
@@ -176,12 +172,12 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 							rate={getStat('special-defense')?.effort}
 						/>
 						<Statistics
-							icon="shield"
+							icon="sword"
 							name={getStat('special-attack')?.stat.name}
 							rate={getStat('special-attack')?.effort}
 						/>
 						<Statistics
-							icon="shield"
+							icon="speed"
 							name={getStat('speed')?.stat.name}
 							rate={getStat('speed')?.effort}
 						/>

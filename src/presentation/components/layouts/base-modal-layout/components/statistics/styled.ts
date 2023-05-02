@@ -11,12 +11,17 @@ const images = {
 	sword,
 };
 
-const getImage = (name: any) => images[name];
-
 export const Container = styled.div`
 	display: flex;
 
 	flex: 1;
+
+	div {
+		display: flex;
+		flex: 1;
+
+		align-items: center;
+	}
 
 	align-items: center;
 	justify-content: space-between;
@@ -24,11 +29,12 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.image<Pick<StatisticsProps, 'icon'>>`
-	width: 55px;
-	height: 11px;
-
+	width: 20px;
+	height: 15px;
 	background-image: url(${(props) => images[props.icon]});
 	background-repeat: no-repeat;
+
+	margin-right: 5px;
 `;
 
 export const Name = styled.label`

@@ -28,6 +28,7 @@ export const Container = styled.div`
 	margin-top: 80px;
 
 	display: flex;
+	/* flex: 1; */
 
 	flex-direction: column;
 	align-self: center;

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	width: 100%;
 	/* flex: 1; */
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 
 	padding: 5px;
 
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 
 export const Type = styled.div<TypeType>`
 	display: flex;
-	flex: 0 0 calc(50% - 50px);
+	/* flex: 0 0 calc(50% - 50px); */
 	width: 99px;
 	max-height: 32px;
 	height: 32px;
@@ -23,6 +23,7 @@ export const Type = styled.div<TypeType>`
 	margin: 5px;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 
 	border-radius: 42px;
 

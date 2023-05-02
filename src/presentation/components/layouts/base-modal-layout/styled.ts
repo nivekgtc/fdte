@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 
 import editIcon from 'assets/images/editIcon.png';
-import defaultPk from 'assets/images/svgs/default-pokemon.svg';
-import empty from 'assets/images/svgs/empty-pokemon.svg';
-import pokemon from 'assets/images/svgs/pokemon.svg';
 import { motion } from 'framer-motion';
-
-const imageType = {
-	defaultPk,
-	pokemon,
-	empty,
-};
 
 export const Divider = styled.div`
   display: flex;
@@ -40,6 +31,18 @@ export const PokeballContainer = styled(motion.div)`
 `;
 
 export const WrapperStyle = styled.div`
+	display: flex;
+	flex: 1;
+	width: 100%;
+	flex-direction: column;
+
+	/* min-width: 100%; */
+	span {
+		min-width: 100%;
+
+		align-items: center;
+		justify-content: center;
+	}
 	h1 {
 		color: ${(props) => props.theme.neutral[700]};
 	}
@@ -70,11 +73,6 @@ export const WrapperStyle = styled.div`
 			border: ${(props) => props.theme.neutral[300]};
 		}
 	}
-
-	display: flex;
-	flex: 1;
-	width: 100%;
-	flex-direction: column;
 
 	align-items: center;
 	justify-content: center;
@@ -124,12 +122,10 @@ export const WrapperStyle = styled.div`
 
 	& .ability {
 		display: flex;
-		flex: 0 0 calc(50% - 10px);
-		/* width: 100%; */
 		align-items: center;
 		justify-content: center;
 
-		margin: 40px;
+		margin: 40px 0;
 
 		//TODO -> apply theme later
 		font-family: 'Open Sans';
