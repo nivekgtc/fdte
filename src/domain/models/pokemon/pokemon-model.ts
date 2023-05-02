@@ -57,6 +57,8 @@ export interface Pokemon {
 	types: PokemonType[];
 	/** Data describing a Pokemon's types in a previous generation. */
 	past_types: PokemonPastType[];
+
+	createdManually?: boolean;
 }
 
 /**
