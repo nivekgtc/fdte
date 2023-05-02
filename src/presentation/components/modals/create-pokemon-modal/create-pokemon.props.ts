@@ -1,4 +1,10 @@
 import { Pokemon } from '~/domain/models';
+import {
+	cmToDecimeter,
+	decimeterToCentimeter,
+	hectogramToKg,
+	kgToHectogram,
+} from '~/presentation/utils';
 
 type Ability = {
 	name: string;
@@ -40,12 +46,17 @@ export const mapPokemonFormToDefaultMode = (
 	pokemonForm: PokemonFormProps,
 	imageUrl: string
 ): Pokemon => {
-	const { abilities, stats, type, ...restProps } = pokemonForm;
+	const { abilities, stats, type, height, weight, ...restProps } = pokemonForm;
 
 	const mappedStatsKeys = Object.getOwnPropertyNames(stats);
 
+	const heightMapped = cmToDecimeter(height);
+	const weightMapped = kgToHectogram(weight);
+
 	const pokemonMapped: Pokemon = {
 		...restProps,
+		height: heightMapped,
+		weight: weightMapped,
 		abilities: abilities.map((ability) => ({
 			ability: {
 				name: ability.value,
@@ -66,7 +77,7 @@ export const mapPokemonFormToDefaultMode = (
 };
 
 export const mapPokemonToForm = (pokemon: Pokemon): PokemonFormProps => {
-	const { abilities, stats, types, ...restProps } = pokemon;
+	const { abilities, stats, types, height, weight, ...restProps } = pokemon;
 
 	const formattedStats = {};
 
@@ -74,8 +85,13 @@ export const mapPokemonToForm = (pokemon: Pokemon): PokemonFormProps => {
 		formattedStats[stat.stat.name] = stat.effort;
 	});
 
+	const heightMapped = decimeterToCentimeter(height);
+	const weightMapped = hectogramToKg(weight);
+
 	const pokemonMapped: Pokemon = {
 		...restProps,
+		height: heightMapped,
+		weight: weightMapped,
 		abilities: abilities.map((ability) => ({
 			value: ability.ability.name,
 			label: ability.ability.name,

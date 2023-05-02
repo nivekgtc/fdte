@@ -4,40 +4,44 @@ import editIcon from 'assets/images/editIcon.png';
 import { motion } from 'framer-motion';
 
 export const Divider = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	position: relative;
 
-  h2 {
-    font-family: ${(props) => props.theme.typography.fontFamily}
-    font-size: ${(props) => props.theme.typography.h2.fontSize};
-    font-weight: ${(props) => props.theme.typography.h2.weight};
-    line-height: ${(props) => props.theme.typography.h2.lineHeight};
-    color: ${(props) => props.theme.neutral[700]};
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  
-  hr {
-    flex: 1;
-    height: 1px;
-    background-color: ${(props) => props.theme.neutral[500]};;
-  }
+	h2 {
+		font-family: ${(props) => props.theme.typography.fontFamily};
+		font-size: ${(props) => props.theme.typography.h2.fontSize};
+		font-weight: ${(props) => props.theme.typography.h2.weight};
+		line-height: ${(props) => props.theme.typography.h2.lineHeight};
+		color: ${(props) => props.theme.neutral[700]};
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	hr {
+		flex: 1;
+		height: 1px;
+		background-color: ${(props) => props.theme.neutral[500]};
+	}
 `;
 
 export const ButtonContainer = styled(motion.div)`
 	position: fixed;
 	cursor: pointer;
+
+	@media (max-width: 768px) {
+		bottom: 0;
+	}
 `;
 
 export const WrapperStyle = styled.div`
 	display: flex;
 	flex: 1;
 	width: 100%;
+
 	flex-direction: column;
 
-	/* min-width: 100%; */
 	span {
 		min-width: 100%;
 

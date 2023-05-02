@@ -9,7 +9,7 @@ import { isValidPokemon } from '~/store/helpers';
 import { Button } from '..';
 import * as S from './styled';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 	const dispatch = useAppDispatch();
 	const { pokemons } = useAppSelector((state) => state.pokemonSlice);
 
@@ -27,13 +27,13 @@ const Sidebar = () => {
 	};
 
 	return (
-		<S.SideBarWrapper data-cy="sidebar">
-			<S.SideBarList>
+		<S.SideBarWrapper data-cy="sidebar" {...props}>
+			<S.SideBarList data-testid="sidebar-list">
 				{pokemons?.map((item) => (
 					<S.SideBarItem
 						whileHover={{ scale: 1.1 }}
-						// onClick={handleEditPokemon}
 						onClick={() => handleEditPokemon(item)}
+						data-testid="pokemon-image"
 					>
 						{item?.sprites?.front_default ? (
 							<S.PokemonImage url={item.sprites.front_default} />

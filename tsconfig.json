@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["cypress"],
+    "types": ["cypress", "vitest"],
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",

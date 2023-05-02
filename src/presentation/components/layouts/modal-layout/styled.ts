@@ -16,16 +16,22 @@ export const Container = styled.div`
 	z-index: 2;
 	min-width: 330px;
 
-	width: 330px;
-	height: 500px;
+	@media (max-width: 768px) {
+		width: 100%;
+		height: 100%;
+	}
+	@media (min-width: 769px) {
+		width: 330px;
+		margin-top: 80px;
+		height: 500px;
+	}
+
 	overflow: scroll;
 
 	&::-webkit-scrollbar {
 		width: 0;
 		height: 0;
 	}
-
-	margin-top: 80px;
 
 	display: flex;
 	/* flex: 1; */

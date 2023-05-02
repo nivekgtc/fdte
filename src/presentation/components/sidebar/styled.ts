@@ -45,8 +45,6 @@ export const SideBarItem = styled(motion.li)`
 
 // TODO -> Background color white when have a pokemon
 export const PokemonImage = styled.image<{ url?: string }>`
-	/* display: flex; */
-
 	width: 50%;
 	height: 50%;
 
