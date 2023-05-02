@@ -1,0 +1,58 @@
+{
+  "translation": {
+    "common": {
+      
+    },
+    "types": {
+      "normal": "normal",
+      "fighting": "lutador",
+      "flying": "voador",
+      "poison": "venenoso",
+      "ground": "terra",
+      "rock": "pedra",
+      "bug": "inseto",
+      "ghost": "fantasma",
+      "steel": "aço",
+      "fire": "fogo",
+      "water": "água",
+      "grass": "grama",
+      "electric": "elétrico",
+      "psychic": "psíquico",
+      "ice": "gelo",
+      "dragon": "dragão",
+      "dark": "sombrio",
+      "fairy": "fada",
+      "unknown": "desconhecido",
+      "shadow": "sombra"
+    },
+    "abilities": {
+      "stench": "mau cheiro",
+      "drizzle": "chuva",
+      "speed-boost": "aumento de velocidade",
+      "battle-armor": "armadura de batalha",
+      "sturdy": "firme",
+      "damp": "umidade",
+      "limber": "flexível",
+      "sand-veil": "véu de areia",
+      "static": "estático",
+      "volt-absorb": "absorção de eletricidade",
+      "water-absorb": "absorção de água",
+      "oblivious": "desatento",
+      "cloud-nine": "nove nuvens",
+      "compound-eyes": "olhos compostos",
+      "insomnia": "insônia",
+      "color-change": "mudança de cor",
+      "immunity": "imunidade",
+      "flash-fire": "chama fulminante",
+      "shield-dust": "poeira escudo",
+      "own-tempo": "ritmo próprio"
+    },
+    "stats": {
+      "defense": "defesa",
+      "attack": "ataque",
+      "special-defense": "defesa especial",
+      "special-attack": "ataque especial",
+      "speed": "velocidade"
+    }
+  }
+}
