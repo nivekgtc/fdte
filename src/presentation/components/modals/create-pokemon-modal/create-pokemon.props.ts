@@ -64,3 +64,27 @@ export const mapPokemonFormToDefaultMode = (
 	};
 	return pokemonMapped;
 };
+
+export const mapPokemonToForm = (pokemon: Pokemon): PokemonFormProps => {
+	const { abilities, stats, types, ...restProps } = pokemon;
+
+	const formattedStats = {};
+
+	stats.forEach((stat) => {
+		formattedStats[stat.stat.name] = stat.effort;
+	});
+
+	const pokemonMapped: Pokemon = {
+		...restProps,
+		abilities: abilities.map((ability) => ({
+			value: ability.ability.name,
+			label: ability.ability.name,
+		})),
+		stats: formattedStats,
+		type: types.map((type) => ({
+			value: type.type.name,
+			label: type.type.name,
+		})),
+	};
+	return pokemonMapped;
+};

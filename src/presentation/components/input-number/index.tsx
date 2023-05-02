@@ -43,6 +43,7 @@ const InputNumber = ({
 									type="number"
 									placeholder={placeholder}
 									name={name}
+									error={Boolean(error?.message)}
 								/>
 
 								{suffix && <S.InputSuffix>{suffix}</S.InputSuffix>}

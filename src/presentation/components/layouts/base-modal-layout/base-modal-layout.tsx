@@ -50,7 +50,7 @@ const mockStatisticsValues: StatisticsProps[] = [
 	},
 ];
 
-const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
+const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 	const dispatch = useAppDispatch();
 	const pokemon = useAppSelector((state) => state.pokemonSlice?.pokemon);
 	const modalType = useAppSelector((state) => state.pokemonSlice.modal.name);
@@ -92,12 +92,12 @@ const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 	};
 
 	return (
-		<ModalLayout imageType={imageType} onClose={onClose}>
-			<S.WrapperStyle>
+		<ModalLayout imageType={imageType} onClose={onClose} {...props}>
+			<S.WrapperStyle data-cy="modal">
 				{/* TODO ->implement edition*/}
 				{!isEditting ? (
 					<span className="name">
-						<h1>{pokemon?.name.toUpperCase()} </h1>
+						<h1>{pokemon?.name.toUpperCase()}</h1>
 						{modalType === 'edit' && <S.EditIcon onClick={toggleEdition} />}
 					</span>
 				) : (
@@ -124,14 +124,12 @@ const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 						<hr />
 						<div>
 							<label>ALTURA</label>
-							{/* <h2>0.7M</h2> */}
 							{/* TODO Transform height */}
 							<h2>{pokemon?.height}M</h2>
 						</div>
 						<hr />
 						<div>
 							<label>PESO</label>
-							{/*  */}
 							<h2>{pokemon?.weight}</h2>
 						</div>
 					</span>
@@ -195,6 +193,7 @@ const BaseModalLayout = ({ imageType }: ModalLayoutProps) => {
 			)}
 			{modalType === 'capture' && (
 				<S.PokeballContainer
+					data-cy="capture-button"
 					whileHover={{ scale: 1.1 }}
 					onClick={capturePokemon}
 				>

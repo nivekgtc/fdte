@@ -41,6 +41,7 @@ const InputText = ({
 								type={type}
 								placeholder={placeholder}
 								name={name}
+								error={Boolean(error?.message)}
 								value={field.value}
 								onChange={field.onChange}
 							/>

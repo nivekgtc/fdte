@@ -6,7 +6,7 @@ import { ModalLayoutProps } from './modal-layout.props';
 import * as S from './styled';
 
 const ModalLayout = (
-	{ children, imageType, onClose }: ModalLayoutProps,
+	{ children, imageType, onClose, ...props }: ModalLayoutProps,
 	ref
 ) => {
 	const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ const ModalLayout = (
 	const handleOnClose = () => dispatch(setModal(undefined));
 
 	return (
-		<S.Container>
+		<S.Container {...props} data-cy="modal-layout">
 			<div className="close-container" onClick={handleOnClose}>
 				{/* <img className="close" src={close} /> */}
 				<CloseIcon />

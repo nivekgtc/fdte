@@ -102,6 +102,7 @@ export const WrapperStyle = styled.div`
 
 	& .metrics {
 		display: flex;
+		width: 100%;
 
 		align-items: center;
 		justify-content: space-around;
@@ -124,7 +125,7 @@ export const WrapperStyle = styled.div`
 	& .ability {
 		display: flex;
 		flex: 0 0 calc(50% - 10px);
-
+		/* width: 100%; */
 		align-items: center;
 		justify-content: center;
 

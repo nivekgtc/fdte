@@ -5,6 +5,9 @@ export const InputTextWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1.6rem;
+
+	flex: 1;
+	width: 85%;
 `;
 
 export const Label = styled.label`
@@ -28,7 +31,7 @@ export const Error = styled.label`
 	color: ${(props) => props.theme.palette.action.dark};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ error?: boolean }>`
 	width: 100%;
 	font-weight: 700;
 	font-size: 1.6rem;
@@ -42,8 +45,11 @@ export const Input = styled.input`
 
 	&:focus,
 	&:active {
-		border-color: #598bff;
+		border-color: ${(props) =>
+			props?.error ? props.theme.palette.action.dark : '#598bff'};
 	}
+
+	border-color: ${(props) => props?.error && props.theme.palette.action.dark};
 
 	&::placeholder {
 		color: #c5cef4;

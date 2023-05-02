@@ -13,13 +13,11 @@ const imageType = {
 };
 
 export const Container = styled.div`
+	z-index: 2;
 	min-width: 330px;
-	min-height: 480px;
 
 	width: 330px;
-	/* height: 80%; */
-	height: 600px;
-	/* max-height: 50px; */
+	height: 500px;
 	overflow: scroll;
 
 	&::-webkit-scrollbar {
@@ -27,7 +25,7 @@ export const Container = styled.div`
 		height: 0;
 	}
 
-	margin-top: 130px;
+	margin-top: 80px;
 
 	display: flex;
 

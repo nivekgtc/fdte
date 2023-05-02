@@ -1,5 +1,3 @@
-// import { ModalLayout } from "..";
-// import { ModalLayoutProps } from "../modal-layout/modal-layout.props";
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -12,28 +10,26 @@ import {
 } from '~/presentation/components';
 import { ModalLayoutProps } from '~/presentation/components/layouts/modal-layout/modal-layout.props';
 import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
-import { useYupValidationResolver } from '~/presentation/hooks/use-yup-validation-resolver';
-import { capture } from '~/store/features/pokemon/actions';
+import { capture, edit, setModal } from '~/store/features/pokemon/actions';
 import {
 	PokemonFormProps,
 	mapPokemonFormToDefaultMode,
+	mapPokemonToForm,
 } from './create-pokemon.props';
 import pokemonValidationSchema from './create-pokemon.schema';
 import * as S from './styled';
 
 const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
-	const resolver = useYupValidationResolver(pokemonValidationSchema);
 	const dispatch = useAppDispatch();
 
-	const { control, formState, watch, getValues, handleSubmit } =
-		useForm<PokemonFormProps>({
-			// resolver: yupResolver(pokemonValidationSchema),
-			resolver: yupResolver(pokemonValidationSchema),
-			mode: 'onChange',
-		});
+	const modalType = useAppSelector((state) => state.pokemonSlice.modal.name);
+	const pokemon = useAppSelector((state) => state.pokemonSlice.pokemon);
 
-	const wa = watch();
-	console.log({ wa: getValues(), wa2: wa, formState });
+	const { control, handleSubmit } = useForm<PokemonFormProps>({
+		resolver: yupResolver(pokemonValidationSchema),
+		defaultValues: modalType === 'edit' ? mapPokemonToForm(pokemon) : {},
+		mode: 'onChange',
+	});
 
 	const types = useAppSelector((state) => state.pokemonSlice.types);
 	const abilities = useAppSelector((state) => state.pokemonSlice.abilities);
@@ -48,17 +44,24 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 		return imageUrl;
 	};
 
-	const onSubmit = async (
-		data: PokemonFormProps
-		// e: React.SyntheticEvent | undefined
-	) => {
-		// e?.preventDefault();
+	const onSubmit = async (data: PokemonFormProps) => {
 		const mappedPokemon = mapPokemonFormToDefaultMode(
 			data,
-			getImageUploadedUrl()
+			getImageUploadedUrl() || pokemon?.sprites.front_default
 		);
-		dispatch(capture(mappedPokemon));
-		console.log({ data, mappedPokemon });
+
+		if (modalType === 'edit') {
+			dispatch(edit(mappedPokemon));
+			dispatch(setModal());
+			return;
+		}
+		dispatch(
+			capture({
+				...mappedPokemon,
+				id: Math.floor(Math.random() * 1000) + 3000,
+				createdManually: true,
+			})
+		);
 	};
 	const onError = (errors, e) => console.log({ errors });
 
@@ -90,9 +93,6 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 					<hr />
 				</S.Divider>
 
-				{/* <Dropdown label="Tipo" options={types} /> */}
-
-				{/* TODO -> change to dropdown type */}
 				<DropdownSelect
 					name="type"
 					options={types?.map((item) => ({
@@ -109,7 +109,6 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 					<hr />
 				</S.Divider>
 
-				{/* TODO -> create multiselect input type and change input below to this type */}
 				<DropdownSelect
 					name="abilities.0"
 					control={control}
@@ -174,7 +173,10 @@ const CreatePokemonModal = ({ imageType }: ModalLayoutProps) => {
 					control={control}
 				/>
 
-				<Button text="CRIAR POKEMON" type="submit" />
+				<Button
+					text={modalType === 'edit' ? 'SALVAR' : 'CRIAR POKEMON'}
+					type="submit"
+				/>
 			</S.WrapperStyle>
 		</ModalLayout>
 	);

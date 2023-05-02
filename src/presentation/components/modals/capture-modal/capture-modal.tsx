@@ -1,7 +1,7 @@
 import { BaseModalLayout } from '../../layouts';
 
-const CaptureModal = () => {
-	return <BaseModalLayout imageType="defaultPk"></BaseModalLayout>;
+const CaptureModal = (props) => {
+	return <BaseModalLayout {...props} imageType="defaultPk"></BaseModalLayout>;
 };
 
 export default CaptureModal;

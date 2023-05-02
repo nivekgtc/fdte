@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Pokemon } from '~/domain/models';
 import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
 import { setModal, setPokemon } from '~/store/features/pokemon/actions';
+import { IS_BAG_FULL } from '~/store/features/pokemon/selectors';
 import { isValidPokemon } from '~/store/helpers';
 import { Button } from '..';
 import * as S from './styled';
@@ -19,12 +20,14 @@ const Sidebar = () => {
 		}
 	};
 
+	const isBagFull = useAppSelector(IS_BAG_FULL);
+
 	const openCreateModal = () => {
-		dispatch(setModal('new'));
+		!isBagFull && dispatch(setModal('new'));
 	};
 
 	return (
-		<S.SideBarWrapper>
+		<S.SideBarWrapper data-cy="sidebar">
 			<S.SideBarList>
 				{pokemons?.map((item) => (
 					<S.SideBarItem
