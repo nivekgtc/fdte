@@ -1,20 +1,24 @@
-import 'reflect-metadata'
+import 'reflect-metadata';
 
-import { Container } from 'inversify'
+import { Container } from 'inversify';
 import {
-  InfraModule,
-  ApplicationModule,
-  ApiModule,
-  ValidationModule,
-  ConstantsModule
-} from './modules'
+	ApiModule,
+	ApplicationModule,
+	ConstantsModule,
+	InfraModule,
+} from './modules';
 
-const container = new Container()
+const container = new Container();
 
 try {
-  container.load(...InfraModule, ...ApplicationModule, ...ApiModule, ...ValidationModule, ...ConstantsModule)
+	container.load(
+		...InfraModule,
+		...ApplicationModule,
+		...ApiModule,
+		...ConstantsModule
+	);
 } catch (error) {
-  console.error(error)
+	console.error(error);
 }
 
-export { container }
+export { container };
