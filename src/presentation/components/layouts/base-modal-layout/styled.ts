@@ -26,7 +26,8 @@ export const Divider = styled.div`
   }
 `;
 
-export const PokeballContainer = styled(motion.div)`
+export const ButtonContainer = styled(motion.div)`
+	position: fixed;
 	cursor: pointer;
 `;
 

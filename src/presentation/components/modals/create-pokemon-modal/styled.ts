@@ -74,4 +74,8 @@ export const WrapperStyle = styled.form`
 		line-height: ${(props) => props.theme.typography.label.lineHeight};
 		font-weight: bold;
 	}
+
+	button {
+		margin-bottom: 10px;
+	}
 `;

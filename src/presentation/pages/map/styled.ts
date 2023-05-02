@@ -16,4 +16,5 @@ export const ContainerMap = styled.div`
 	flex: 1;
 
 	justify-content: center;
+	align-items: center;
 `;

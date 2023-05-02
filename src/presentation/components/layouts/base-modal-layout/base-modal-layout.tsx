@@ -184,18 +184,16 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 					</div>
 				</span>
 			</S.WrapperStyle>
-			{modalType === 'edit' && (
-				<Button text="LIBERAR POKEMON" onClick={leavePokemon} />
-			)}
-			{modalType === 'capture' && (
-				<S.PokeballContainer
-					data-cy="capture-button"
-					whileHover={{ scale: 1.1 }}
-					onClick={capturePokemon}
-				>
-					<PokeballIcon />
-				</S.PokeballContainer>
-			)}
+			<S.ButtonContainer
+				data-cy="capture-button"
+				whileHover={{ scale: 1.1 }}
+				onClick={capturePokemon}
+			>
+				{modalType === 'edit' && (
+					<Button text="LIBERAR POKEMON" onClick={leavePokemon} />
+				)}
+				{modalType === 'capture' && <PokeballIcon />}
+			</S.ButtonContainer>
 		</ModalLayout>
 	);
 };
