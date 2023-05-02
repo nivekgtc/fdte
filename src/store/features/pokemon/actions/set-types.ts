@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { NamedAPIResource } from '~/domain/models';
+import { NamedAPIResource } from '~/models';
 import { ActionMap, ReducerMap } from '~/store/types/action-reducer-map';
 import { POKEMON_SLICE_ACTIONS, PokemonSliceState } from '../types';
 

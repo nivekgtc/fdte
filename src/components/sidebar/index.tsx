@@ -1,8 +1,8 @@
 import iconPlus from 'assets/images/plus.png';
 
 import { motion } from 'framer-motion';
-import { Pokemon } from '~/domain/models';
 import { useAppDispatch, useAppSelector } from '~/hooks';
+import { Pokemon } from '~/models';
 import { setModal, setPokemon } from '~/store/features/pokemon/actions';
 import { IS_BAG_FULL } from '~/store/features/pokemon/selectors';
 import { isValidPokemon } from '~/store/helpers';

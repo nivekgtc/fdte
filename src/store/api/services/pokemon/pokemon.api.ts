@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { NamedAPIResource, NamedAPIResourceList } from '~/domain/models';
+import { NamedAPIResource, NamedAPIResourceList } from '~/models';
 import { generateRandomPokemonId } from '~/store/helpers/generate-random-poke-id';
 
 // const loadPokemonAbility = useService<RemoteLoadPokemonAbilityList>(ServicesTypes.POKEMON.LOAD_POKEMON_ABILITY_LIST)

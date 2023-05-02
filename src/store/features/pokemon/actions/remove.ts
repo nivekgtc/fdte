@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Pokemon } from '~/domain/models';
+import { Pokemon } from '~/models';
 import { ActionMap, ReducerMap } from '~/store/types/action-reducer-map';
 import {
 	NOT_POKEMON_NAME,

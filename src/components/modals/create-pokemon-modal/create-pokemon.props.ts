@@ -1,4 +1,4 @@
-import { Pokemon } from '~/domain/models';
+import { Pokemon } from '~/models';
 import {
 	cmToDecimeter,
 	decimeterToCentimeter,

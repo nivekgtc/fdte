@@ -1,4 +1,4 @@
-import { NamedAPIResource, Pokemon } from '~/domain/models';
+import { NamedAPIResource, Pokemon } from '~/models';
 
 export const pokemonSliceName = 'pokemonSlice' as const;
 
