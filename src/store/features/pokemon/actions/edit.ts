@@ -11,7 +11,9 @@ export const setEditReducer: ReducerMap<PokemonSliceState, Pokemon> = (
 	state,
 	action
 ) => {
-	const indexToChange = state.pokemons.findIndex((item) => item.id === item.id);
+	const indexToChange = state.pokemons.findIndex(
+		(item) => item.id === action.payload.id
+	);
 
 	const NUMBERS_TO_CHANGE = 1;
 

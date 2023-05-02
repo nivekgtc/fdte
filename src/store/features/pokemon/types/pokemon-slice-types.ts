@@ -23,6 +23,7 @@ export const POKEMON_SLICE_ACTIONS = {
 } as const;
 
 export const NOT_POKEMON_NAME = '?';
+export const MANUALLY_CREATED_POKEMON = 'manuallyCreated';
 
 export const POKEMON_SLICE_INITIAL_STATE: PokemonSliceState = {
 	modal: {
