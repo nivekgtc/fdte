@@ -16,6 +16,7 @@ import checkIcon from 'assets/images/checkIcon.png';
 import close from 'assets/images/close.png';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { TxKeyPath } from '~/i18n';
 import { edit } from '~/store/features/pokemon/actions/edit';
 import { remove } from '~/store/features/pokemon/actions/remove';
 import { Types } from '../../types/types';
@@ -168,27 +169,27 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 					<div>
 						<Statistics
 							icon="shield"
-							name={getStat('defense')?.stat.name}
+							name={t(`stats.defense` as TxKeyPath).toUpperCase()}
 							rate={getStat('defense')?.effort}
 						/>
 						<Statistics
 							icon="sword"
-							name={getStat('attack')?.stat.name}
+							name={t(`stats.attack` as TxKeyPath).toUpperCase()}
 							rate={getStat('attack')?.effort}
 						/>
 						<Statistics
 							icon="shield"
-							name={getStat('special-defense')?.stat.name}
+							name={t(`stats.special-defense` as TxKeyPath).toUpperCase()}
 							rate={getStat('special-defense')?.effort}
 						/>
 						<Statistics
 							icon="sword"
-							name={getStat('special-attack')?.stat.name}
+							name={t(`stats.special-attack` as TxKeyPath).toUpperCase()}
 							rate={getStat('special-attack')?.effort}
 						/>
 						<Statistics
 							icon="speed"
-							name={getStat('speed')?.stat.name}
+							name={t(`stats.speed` as TxKeyPath).toUpperCase()}
 							rate={getStat('speed')?.effort}
 						/>
 					</div>
