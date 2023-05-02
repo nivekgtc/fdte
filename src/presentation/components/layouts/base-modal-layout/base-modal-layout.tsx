@@ -15,6 +15,7 @@ import * as yup from 'yup';
 import checkIcon from 'assets/images/checkIcon.png';
 import close from 'assets/images/close.png';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { edit } from '~/store/features/pokemon/actions/edit';
 import { remove } from '~/store/features/pokemon/actions/remove';
 import { Types } from '../../types/types';
@@ -55,6 +56,8 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 	const pokemon = useAppSelector((state) => state.pokemonSlice?.pokemon);
 	const modalType = useAppSelector((state) => state.pokemonSlice.modal.name);
 
+	const { t } = useTranslation();
+
 	const [isEditting, setIsEditting] = useState(false);
 
 	const { control, getValues } = useForm({
@@ -70,9 +73,11 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 	if (!pokemon) return null;
 
 	// TODO create utils
-	const getStat = (statName: string) =>
-		pokemon?.stats?.find((stat) => stat.stat.name === statName);
+	const getStat = (statName: string) => {
+		// t(`stats[${}]` as TxKeyPath)
 
+		return pokemon?.stats?.find((stat) => stat.stat.name === statName);
+	};
 	const onClose = () => dispatch(setModal(undefined));
 
 	const capturePokemon = () => {
@@ -147,7 +152,12 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 						<hr />
 					</S.Divider>
 					<span className="ability">
-						{pokemon.abilities?.map((item) => item.ability.name).join(', ')}
+						{pokemon.abilities
+							?.map(
+								(item) => item.ability.name
+								// t(`abilities.${item.ability.name.toLowerCase()}` as TxKeyPath)
+							)
+							.join(', ')}
 					</span>
 					<S.Divider>
 						<hr />
