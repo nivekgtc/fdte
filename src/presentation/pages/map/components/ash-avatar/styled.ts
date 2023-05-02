@@ -13,15 +13,18 @@ const mapPositionToProps = {
 	ashStop,
 };
 export const Container = styled.div`
-	/* position: relative; */
+	position: absolute;
 	top: 60%;
 	left: 50%;
+
+	z-index: 1;
 `;
 
 export const AshImage = styled(motion.div)<AshAvatarProps>`
 	/* position: relative; */
 	/* top: 60%;
 	left: 50%; */
+	cursor: pointer;
 
 	margin-bottom: -120px;
 

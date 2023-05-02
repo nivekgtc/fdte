@@ -5,9 +5,10 @@ import {
 	TooltipSearchIcon,
 	TooltipWarnIcon,
 } from '~/presentation/components/icons';
-import { useAppDispatch } from '~/presentation/hooks';
+import { useAppDispatch, useAppSelector } from '~/presentation/hooks';
 import { useLazyGetRandomPokemonQuery } from '~/store/api/services/pokemon/pokemon.api';
 import { setModal, setPokemon } from '~/store/features/pokemon/actions';
+import { IS_BAG_FULL } from '~/store/features/pokemon/selectors';
 import { AshAvatarProps } from './ash-avatar.props';
 import { AshImage, Container } from './styled';
 
@@ -29,6 +30,7 @@ const Tooltip = ({ type }: { type: ITooltipTypes }) => {
 			initial={{ y: 30, opacity: 0 }}
 			animate={{ y: -20, opacity: 1 }}
 			exit={{ y: 30, opacity: 0 }}
+			data-cy="ash-tooltip"
 		>
 			{tooltipTypes[type]}
 		</motion.div>
@@ -38,6 +40,17 @@ const Tooltip = ({ type }: { type: ITooltipTypes }) => {
 const AshAvatar = ({ position }: AshAvatarProps) => {
 	const [getRandomPokemon, { isFetching, isLoading, isSuccess, data }, status] =
 		useLazyGetRandomPokemonQuery({});
+
+	// const pokemons = useAppSelector((state) => state.pokemonSlice.pokemons);
+	const isBagFull = useAppSelector(IS_BAG_FULL);
+
+	// const isBagFull = useMemo(() => {
+	// 	const hasFreeSpace = pokemons.find(
+	// 		(pokemon) => pokemon.name === NOT_POKEMON_NAME
+	// 	);
+
+	// 	return !hasFreeSpace;
+	// }, [pokemons]);
 
 	const isLoadingPokemon = isFetching || isLoading;
 
@@ -84,8 +97,7 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 	}, [isWalking, walkingImages]);
 
 	const handleAshImageClick = () => {
-		// toggleImage();
-		getRandomPokemon();
+		!isBagFull && getRandomPokemon();
 	};
 
 	useEffect(
@@ -102,15 +114,18 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 	const tooltipType = (): ITooltipTypes => {
 		if (isLoadingPokemon) return 'loading';
 
+		if (isBagFull) return 'full';
 		return 'search';
-		// TODO - implement bag free space validation at redux
-		// if (hasFreeSpaceAtBag) return tooltipTypes.free
-		// return tooltipTypes.full
 	};
 
 	return (
-		<Container onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+		<Container
+			data-cy="ash-avatar"
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+		>
 			<AshImage
+				data-cy="ash-image"
 				position={currentImage}
 				onClick={handleAshImageClick}
 				whileHover={{ scale: 1.1 }}
