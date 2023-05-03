@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { TxKeyPath } from '~/i18n';
 import { edit } from '~/store/features/pokemon/actions/edit';
 import { remove } from '~/store/features/pokemon/actions/remove';
+import { decimetersToMeters, hectogramToKg } from '~/utils';
 import { Types } from '../../types/types';
 
 const mockTypesValues = ['fire', 'ground', 'eletric', 'ice'];
@@ -131,12 +132,12 @@ const BaseModalLayout = ({ imageType, ...props }: ModalLayoutProps) => {
 						<div>
 							<label>ALTURA</label>
 							{/* TODO Transform height */}
-							<h2>{pokemon?.height}M</h2>
+							<h2>{decimetersToMeters(pokemon?.height)}M</h2>
 						</div>
 						<hr />
 						<div>
 							<label>PESO</label>
-							<h2>{pokemon?.weight}</h2>
+							<h2>{hectogramToKg(pokemon?.weight)}Kg</h2>
 						</div>
 					</span>
 
