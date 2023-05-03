@@ -93,7 +93,7 @@ const AshAvatar = ({ position }: AshAvatarProps) => {
 
 	useEffect(
 		() => (isLoadingPokemon ? toggleImage() : resetImage()),
-		[isLoadingPokemon, isSuccess, toggleImage, resetImage]
+		[isLoadingPokemon, isSuccess]
 	);
 
 	useEffect(() => {
